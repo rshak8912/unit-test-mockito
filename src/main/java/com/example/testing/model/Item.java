@@ -1,9 +1,6 @@
 package com.example.testing.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,6 +9,7 @@ import javax.persistence.Transient;
 @Getter @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor(staticName = "of")
 @Entity
 public class Item {
     @Id
