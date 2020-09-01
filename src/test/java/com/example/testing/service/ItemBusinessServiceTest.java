@@ -17,8 +17,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ItemBusinessServiceTest {
@@ -46,6 +45,6 @@ public class ItemBusinessServiceTest {
 
         itemRepository.save(item);
 
-        verify(itemRepository).save(any(Item.class));
+        verify(itemRepository,times(1)).save(any(Item.class));
     }
 }
