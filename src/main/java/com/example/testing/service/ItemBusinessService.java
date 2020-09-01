@@ -4,6 +4,7 @@ import com.example.testing.model.Item;
 import com.example.testing.repositories.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,5 +23,9 @@ public class ItemBusinessService {
             item.setValue(item.getPrice() * item.getQuantity());
         }
         return itemRepository.findAll();
+    }
+    @Transactional
+    public void saveItem(Item item) {
+        itemRepository.save(item);
     }
 }

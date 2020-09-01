@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
@@ -14,9 +16,11 @@ import java.util.List;
 
 
 import static org.assertj.core.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 public class ItemBusinessServiceTest {
     @InjectMocks
     private ItemBusinessService itemBusinessService;
@@ -34,5 +38,14 @@ public class ItemBusinessServiceTest {
         assertThat(items.get(0).getValue()).isEqualTo(100);
         assertThat(items.get(1).getValue()).isEqualTo(400);
 
+    }
+    @Test
+    public void verifySave () throws Exception {
+
+        Item item = new Item(1, "Item1", 10, 10);
+
+        itemRepository.save(item);
+
+        verify(itemRepository).save(any(Item.class));
     }
 }
